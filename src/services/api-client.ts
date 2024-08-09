@@ -5,10 +5,16 @@ export interface FetchResponse<T> {
     next: string | null;
     results: T[];
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+const apiKey = urlParams.get("api_key");
+if (apiKey)
+    localStorage.setItem("api_key", apiKey);
+
 const axiosInstance = axios.create({
     baseURL: "https://api.rawg.io/api",
     params: {
-        key: localStorage.getItem("rawg_api_key"),
+        key: localStorage.getItem("api_key") || apiKey,
     },
 });
 
