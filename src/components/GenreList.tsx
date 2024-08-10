@@ -10,15 +10,20 @@ import {
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
+import { useMatch, useNavigate } from "react-router-dom";
 
-const GenreList = () => {
+interface Props {
+  onClose: () => void;
+}
+const GenreList = ({ onClose }: Props) => {
   const { data, error, isLoading } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner />;
 
   const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
   const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
-
+  const match = useMatch("/");
+  const navigate = useNavigate();
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
@@ -39,7 +44,10 @@ const GenreList = () => {
                 textAlign="left"
                 fontSize="lg"
                 variant="link"
-                onClick={() => setSelectedGenreId(genre.id)}
+                onClick={() => {
+                  setSelectedGenreId(genre.id);
+                  if (!match) navigate("/");
+                }}
                 fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
               >
                 {genre.name}

@@ -23,7 +23,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, closeMenu }) => (
       <DrawerCloseButton />
       <DrawerHeader>Genres</DrawerHeader>
       <DrawerBody>
-        <GenreList />
+        <GenreList onClose={closeMenu} />
       </DrawerBody>
     </DrawerContent>
   </Drawer>

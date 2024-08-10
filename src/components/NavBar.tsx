@@ -33,7 +33,7 @@ const NavBar: React.FC = () => {
         <Image src={logo} boxSize="60px" objectFit="contain" />
       </Link>
       <SearchInput />
-      <ColorModeSwitch />
+      {/* <ColorModeSwitch /> */}
       {isMobile && (
         <>
           <MobileMenuIcon openMenu={openMenu} />
