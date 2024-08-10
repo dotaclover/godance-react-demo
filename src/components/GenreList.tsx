@@ -13,7 +13,7 @@ import useGameQueryStore from "../store";
 import { useMatch, useNavigate } from "react-router-dom";
 
 interface Props {
-  onClose: () => void;
+  onClose?: () => void;
 }
 const GenreList = ({ onClose }: Props) => {
   const { data, error, isLoading } = useGenres();
@@ -47,6 +47,7 @@ const GenreList = ({ onClose }: Props) => {
                 onClick={() => {
                   setSelectedGenreId(genre.id);
                   if (!match) navigate("/");
+                  if (onClose) onClose();
                 }}
                 fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
               >
