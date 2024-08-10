@@ -6,6 +6,7 @@ import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 import MobileMenuIcon from "../components/MobileMenuIcon";
 import MobileMenu from "../components/MobileMenu";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const NavBar: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -33,13 +34,16 @@ const NavBar: React.FC = () => {
         <Image src={logo} boxSize="60px" objectFit="contain" />
       </Link>
       <SearchInput />
-      {/* <ColorModeSwitch /> */}
-      {isMobile && (
-        <>
-          <MobileMenuIcon openMenu={openMenu} />
-          <MobileMenu isOpen={isOpen} closeMenu={closeMenu} />
-        </>
-      )}
+      <HStack spacing={4}>
+        <LanguageSwitcher />
+        {/* <ColorModeSwitch /> */}
+        {isMobile && (
+          <>
+            <MobileMenuIcon openMenu={openMenu} />
+            <MobileMenu isOpen={isOpen} closeMenu={closeMenu} />
+          </>
+        )}
+      </HStack>
     </HStack>
   );
 };

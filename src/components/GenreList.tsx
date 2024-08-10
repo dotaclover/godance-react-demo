@@ -11,6 +11,7 @@ import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
 import { useMatch, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   onClose?: () => void;
@@ -24,10 +25,11 @@ const GenreList = ({ onClose }: Props) => {
   const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
   const match = useMatch("/");
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
-        Genres
+        {t("Genres")}
       </Heading>
       <List>
         {data?.results?.map((genre) => (
